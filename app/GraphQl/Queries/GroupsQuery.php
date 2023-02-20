@@ -10,9 +10,11 @@ use Rebing\GraphQL\Support\Facades\GraphQL;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Query;
+use App\Graphql\Traits\SearchManyTrait;
 
 class GroupsQuery extends Query
 {
+    use SearchManyTrait;
     protected $attributes = [
         'name' => 'groups',
     ];
@@ -50,22 +52,27 @@ class GroupsQuery extends Query
 
     public function resolve($root, array $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
     {
-        if (isset($args['id'])) {
-            return Group::where('id' , $args['id'])->get();
-        }
+        $data = Group::all();
 
-        if (isset($args['name'])) {
-            return Group::where('name', 'like', '%'. $args['name'] .'%')->get();
-        }
+        // if (isset($args['id'])) {
+        //     return Group::where('id' , $args['id'])->get();
+        // }
 
-        if (isset($args['grade'])) {
-            return Group::where('grade', $args['grade'])->get();
-        }
+        // if (isset($args['name'])) {
+        //     return Group::where('name', 'like', '%'. $args['name'] .'%')->get();
+        // }
 
-        if (isset($args['turnId'])) {
-            return Group::where('turnId', $args['turnId'])->get();
-        }
+        // if (isset($args['grade'])) {
+        //     return Group::where('grade', $args['grade'])->get();
+        // }
 
-        return Group::all();
+        // if (isset($args['turnId'])) {
+        //     return Group::where('turnId', $args['turnId'])->get();
+        // }
+
+        // return Group::all();
+        $data = $this->searchMany($data, $args);
+
+        return $data;
     }
 }

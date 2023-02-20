@@ -7,10 +7,12 @@ use Rebing\GraphQL\Support\Facades\GraphQL;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Query;
+use App\Graphql\Traits\SearchManyTrait;
 
 
 class GmpsQuery extends Query
 {
+    use SearchManyTrait;
     protected $attributes = [
         'name' => 'gmps',
     ];
@@ -42,17 +44,20 @@ class GmpsQuery extends Query
 
     public function resolve($root, array $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
     {
-        if (isset($args['id'])) {
-            return Gmp::where('id' , $args['id'])->get();
-        }
+        $data = Gmp::all();
+        // if (isset($args['id'])) {
+        //     return Gmp::where('id' , $args['id'])->get();
+        // }
 
-        if (isset($args['proffessorId'])) {
-            return Gmp::where('id' , $args['proffessorId'])->get();
-        }
+        // if (isset($args['proffessorId'])) {
+        //     return Gmp::where('id' , $args['proffessorId'])->get();
+        // }
 
-        if (isset($args['matterId'])) {
-            return Gmp::where('id' , $args['matterId'])->get();
-        }
-         return Gmp::all();
+        // if (isset($args['matterId'])) {
+        //     return Gmp::where('id' , $args['matterId'])->get();
+        // }
+        //  return Gmp::all();
+        $data = $this->searchMany($data, $args);
+        return $data;
     }
 }

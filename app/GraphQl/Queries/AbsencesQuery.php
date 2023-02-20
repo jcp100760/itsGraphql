@@ -7,10 +7,12 @@ use Rebing\GraphQL\Support\Facades\GraphQL;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Query;
+use App\Graphql\Traits\SearchManyTrait;
 
 
 class AbsencesQuery extends Query
 {
+    use SearchManyTrait;
     protected $attributes = [
         'name' => 'absences',
     ];
@@ -38,13 +40,18 @@ class AbsencesQuery extends Query
 
     public function resolve($root, array $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
     {
-        if (isset($args['id'])) {
-            return Absence::where('id' , $args['id'])->get();
-        }
+        $data = Absence::all();
 
-        if (isset($args['turnId'])) {
-            return Absence::where('id' , $args['turnId'])->get();
-        }
-         return Absence::all();
+        // if (isset($args['id'])) {
+        //     return Absence::where('id' , $args['id'])->get();
+        // }
+
+        // if (isset($args['turnId'])) {
+        //     return Absence::where('id' , $args['turnId'])->get();
+        // }
+        //  return Absence::all();
+        $data = $this->searchMany($data, $args);
+
+        return $data;
     }
 }

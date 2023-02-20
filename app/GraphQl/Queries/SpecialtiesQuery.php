@@ -10,10 +10,12 @@ use Rebing\GraphQL\Support\Facades\GraphQL;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Query;
+use App\Graphql\Traits\SearchManyTrait;
 
 
 class SpecialtiesQuery extends Query
 {
+    use SearchManyTrait;
     protected $attributes = [
         'name' => 'getSpecialties',
     ];
@@ -35,9 +37,13 @@ class SpecialtiesQuery extends Query
 
     public function resolve($root, array $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
     {
-        if (isset($args['id'])) {
-            return Specialty::where('id' , $args['id'])->get();
-        }
-        return Specialty::all();
+        $data = Specialty::all();
+        // if (isset($args['id'])) {
+        //     return Specialty::where('id' , $args['id'])->get();
+        // }
+        // return Specialty::all();
+        $data = $this->searchMany($data, $args);
+
+        return $data;
     }
 }

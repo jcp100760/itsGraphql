@@ -11,9 +11,11 @@ use Rebing\GraphQL\Support\Facades\GraphQL;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Query;
+use App\Graphql\Traits\SearchManyTrait;
 
 class TurnsQuery extends Query
 {
+    use SearchManyTrait;
     protected $attributes = [
         'name' => 'getTurns',
     ];
@@ -40,14 +42,17 @@ class TurnsQuery extends Query
 
     public function resolve($root, array $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
     {
-        if (isset($args['id'])) {
-            return Turn::where('id' , $args['id'])->get();
-        }
+        $data = Turn::all();
+        // if (isset($args['id'])) {
+        //     return Turn::where('id' , $args['id'])->get();
+        // }
 
-        if (isset($args['name'])) {
-            return Turn::where('name', 'like', '%'. $args['name'] .'%')->get();
-        }
+        // if (isset($args['name'])) {
+        //     return Turn::where('name', 'like', '%'. $args['name'] .'%')->get();
+        // }
 
-        return Turn::all();
+        // return Turn::all();
+        $data = $this->searchMany($data, $args);
+        return $data;
     }
 }

@@ -8,10 +8,12 @@ use Rebing\GraphQL\Support\Facades\GraphQL;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Query;
+use App\Graphql\Traits\SearchManyTrait;
 
 
 class MgsQuery extends Query
 {
+    use SearchManyTrait;
     protected $attributes = [
         'name' => 'mgs',
     ];
@@ -33,9 +35,12 @@ class MgsQuery extends Query
 
     public function resolve($root, array $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
     {
-        if (isset($args['id'])) {
-            return Mg::where('id' , $args['id'])->get();
-        }
-        return Mg::all();
+        $data = Mg::all();
+        // if (isset($args['id'])) {
+        //     return Mg::where('id' , $args['id'])->get();
+        // }
+        // return Mg::all();
+        $data = $this->searchMany($data, $args);
+        return $data;
     }
 }

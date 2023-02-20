@@ -7,9 +7,12 @@ use Rebing\GraphQL\Support\Facades\GraphQL;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Query;
+use App\Graphql\Traits\SearchManyTrait;
 
 class MattersQuery extends Query
 {
+    use SearchManyTrait;
+
     protected $attributes = [
         'name' => 'matters',
     ];
@@ -34,31 +37,27 @@ class MattersQuery extends Query
                 'name' => 'description', 
                 'type' => Type::string(),
             ],
-            // 'proffessors' => [
-            //     'name' => 'proffessors', 
-            //     'type' => Type::listOf(Type::nonNull(GraphQL::type('Proffessor'))),
-            // ],
-            // 'groups' => [
-            //     'name' => 'groups', 
-            //     'type' => Type::listOf(Type::nonNull(GraphQL::type('Group'))),
-            // ],
         ];
     }
 
     public function resolve($root, array $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
     {
-        if (isset($args['id'])) {
-            return Matter::where('id' , $args['id'])->get();
-        }
+        $data = Matter::all();
 
-        if (isset($args['name'])) {
-            return Matter::where('name', 'like', '%'. $args['name'] .'%')->get();
-        }
+        // if (isset($args['id'])) {
+        //     return Matter::where('id' , $args['id'])->get();
+        // }
 
-        if (isset($args['description'])) {
-            return Matter::where('description', 'like', '%'. $args['description'] .'%')->get();
-        }
+        // if (isset($args['name'])) {
+        //     return Matter::where('name', 'like', '%'. $args['name'] .'%')->get();
+        // }
 
-        return Matter::all();
+        // if (isset($args['description'])) {
+        //     return Matter::where('description', 'like', '%'. $args['description'] .'%')->get();
+        // }
+        $data = $this->searchMany($data, $args);
+
+        return $data; //
+        // return Matter::where('description', 'like', '%BIO%')->get();
     }
 }
