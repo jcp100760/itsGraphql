@@ -7,13 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Absence extends Model
 {
-    use HasFactory;
-    
-    protected $table = 'absence';
-    public $timestamps = false;
-
-    protected $fillable = [
-        'gmpId','turnId','starDate','endDate','active',
-    ];
-
+  use HasFactory;
+  protected $table = 'absence';
+  protected $fillable = [
+    'gmpId', 'turnId', 'startDate', 'endDate','active'
+  ];
+  public $timestamps = false;
 }

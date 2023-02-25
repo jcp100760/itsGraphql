@@ -16,7 +16,6 @@ class AbsencesQuery extends Query
     protected $attributes = [
         'name' => 'absences',
     ];
-
     public function type(): Type
     {
         return Type::nonNull(Type::listOf(Type::nonNull(GraphQL::type('Absence'))));
@@ -28,6 +27,14 @@ class AbsencesQuery extends Query
         return [
             'id' => [
                 'name' => 'id', 
+                'type' => Type::int(),
+            ],
+            'startDate' => [
+                'name' => 'startDate', 
+                'type' => Type::string(),
+            ],
+            'endDate' => [
+                'name' => 'endDate', 
                 'type' => Type::string(),
             ],
             'turnId' => [

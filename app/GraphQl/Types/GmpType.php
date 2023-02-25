@@ -4,8 +4,11 @@ namespace App\GraphQL\Types;
 
 use App\Models\Gmp;
 use GraphQL\Type\Definition\Type;
-use App\GraphQL\Fields\MgField;
-use App\GraphQL\Fields\ProffessorField;
+// use App\GraphQL\Fields\MgField;
+// use App\GraphQL\Fields\ProffessorField;
+use App\Models\Mg;
+use App\Models\Proffessor;
+use App\GraphQL\Fields\BaseField;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Type as GraphQLType;
 
@@ -18,6 +21,14 @@ class GmpType extends GraphQLType
 
     public function fields(): array
     {
+        $typeMg = GraphQL::type('Mg');
+        $modelMg = new Mg();
+        $fieldMg = 'mgId';
+
+        $typeProffessor = GraphQL::type('Proffessor');
+        $modelProffessor = new Proffessor();
+        $fieldProffessor = 'proffessorId';
+
         return [
             'id' => [
                 'type' => Type::nonNull(Type::int()),
@@ -31,8 +42,10 @@ class GmpType extends GraphQLType
             'active' => [
                 'type' => Type::nonNull(Type::boolean()),
             ],
-            'mg' => MgField::class,
-            'proffessor' => ProffessorField::class
+            // 'mg' => MgField::class,
+            // 'proffessor' => ProffessorField::class
+            'mg' => new BaseField($typeMg, $modelMg, $fieldMg ),    
+            'proffessor' => new BaseField($typeProffessor, $modelProffessor, $fieldProffessor )     
 
         ];
     }

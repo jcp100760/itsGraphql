@@ -30,7 +30,15 @@ class SpecialtiesQuery extends Query
         return [
             'id' => [
                 'name' => 'id', 
-                'type' => Type::string(),
+                'type' => Type::int(),
+            ],
+            'proffessorId' => [
+                'name' => 'proffessorId', 
+                'type' => Type::int(),
+            ],
+            'matterId' => [
+                'name' => 'matterId', 
+                'type' => Type::int(),
             ],
         ];
     }

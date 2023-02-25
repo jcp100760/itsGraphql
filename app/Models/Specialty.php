@@ -4,17 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
 
 class Specialty extends Model
 {
-    use HasFactory;
-
-    protected $table = 'specialty';
-    public $timestamps = false;
-
-    protected $fillable = [
-        'matterId', 'proffessorId',
-    ];
-
+  use HasFactory;
+  protected $table = 'specialty';
+  protected $fillable = [
+    'matterId', 'proffessorId'
+  ];
+  public $timestamps = false;
 }

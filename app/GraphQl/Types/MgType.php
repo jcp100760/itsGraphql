@@ -5,9 +5,12 @@ declare(strict_types=1);
 namespace App\GraphQL\Types;
 
 use App\Models\Mg;
-use App\GraphQL\Fields\MatterField;
-use App\GraphQL\Fields\GroupField;
-use App\GraphQL\Fields\ProffessorField;
+use App\Models\Matter;
+use App\Models\Group;
+// use App\GraphQL\Fields\MatterField;
+// use App\GraphQL\Fields\GroupField;
+// use App\GraphQL\Fields\ProffessorField;
+use App\GraphQL\Fields\BaseField;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Type as GraphQLType;
@@ -20,6 +23,14 @@ class MgType extends GraphQLType
 
     public function fields(): array
     {
+         $typeMatter = GraphQL::type('Matter');
+         $modelMatter = new Matter;
+         $fieldMatter = 'matterId';
+
+         $typeGroup = GraphQL::type('Group');
+         $modelGroup = new Group;
+         $fieldGroup = 'groupId';
+
         return [
             'id' => [
                 'type' => Type::nonNull(Type::int()),
@@ -30,8 +41,10 @@ class MgType extends GraphQLType
             'groupId' => [
                 'type' => Type::nonNull(Type::int()),
             ],
-            'matter' => MatterField::class,
-            'group' => GroupField::class,
+            // 'matter' => MatterField::class,
+            // 'group' => GroupField::class,
+            'matter' => new BaseField($typeMatter, $modelMatter, $fieldMatter ),    
+            'group' => new BaseField($typeGroup, $modelGroup, $fieldGroup )     
         ];
     }
 }

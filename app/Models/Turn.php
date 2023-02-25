@@ -4,17 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
 
 class Turn extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    protected $table = 'turn';
-    public $timestamps = false;
-
-    protected $fillable = [
-        'name'
-    ];
-
+  protected $table = 'turn';
+  protected $fillable = ['name'];
+  public $timestamps = false;
 }
