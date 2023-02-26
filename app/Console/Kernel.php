@@ -2,14 +2,15 @@
 
 namespace App\Console;
 
+//use App\Jobs\AbsenceUpdateActive;
+use App\Models\Absence;
+use DateTime;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
 {
-//     protected $commands = [
-//         Commands\AbsenceUpdateActive::class,
-//    ];
+    protected $commands = [];
 
     /**
      * Define the application's command schedule.
@@ -19,8 +20,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('absence:updateactive')->hourly();
-    }
+        // $schedule->job(new AbsenceUpdateActive)->everyMinute();
+        
+    }    
 
     /**
      * Register the commands for the application.

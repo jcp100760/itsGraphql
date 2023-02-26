@@ -41,6 +41,11 @@ class AbsencesQuery extends Query
                 'name' => 'turnId', 
                 'type' => Type::int(),
             ],
+            'active' => [
+                'name' => 'active', 
+                'type' => Type::boolean(),
+            ],
+
             
         ];
     }
@@ -57,6 +62,13 @@ class AbsencesQuery extends Query
         //     return Absence::where('id' , $args['turnId'])->get();
         // }
         //  return Absence::all();
+        
+        // $date = (new DateTime())->modify('-3 hour')->format('Y-m-d H:i:s');
+        // Absence::where('endDate','<', $date)
+        //         ->update([
+        //             'active' => false
+        //         ]);
+
         $data = $this->searchMany($data, $args);
 
         return $data;

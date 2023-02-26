@@ -10,7 +10,7 @@ class Group extends Model
   use HasFactory;
   protected $table = 'group';
   protected $fillable = [
-    'grade', 'name', 'turnId'
+    'grade', 'name','description', 'turnId', 'active'
   ];
   public $timestamps = false;
 }

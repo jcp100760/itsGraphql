@@ -30,14 +30,18 @@ class GmpsQuery extends Query
                 'name' => 'id', 
                 'type' => Type::string(),
             ],
+            'mgId' => [
+                'name' => 'mgId', 
+                'type' => Type::int(),
+            ],
             'proffessorId' => [
                 'name' => 'proffessorId', 
                 'type' => Type::int(),
             ],
-            'matterId' => [
-                'name' => 'matterId', 
-                'type' => Type::int(),
-            ],
+            // 'matterId' => [
+            //     'name' => 'matterId', 
+            //     'type' => Type::int(),
+            // ],
            
         ];
     }

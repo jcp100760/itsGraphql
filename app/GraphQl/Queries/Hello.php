@@ -2,7 +2,8 @@
 namespace App\GraphQL\Queries;
 
 use Closure;
-use App\Models\Proffessor;
+use App\Models\Absence;
+use DateTime;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
@@ -17,7 +18,8 @@ class Hello extends Query
 
     public function type(): Type
     {
-        return Type::listOf(Type::nonNull(GraphQL::type('Hello')));
+        //return Type::listOf(Type::nonNull(GraphQL::type('Hello')));
+        return Type::string();
     }
 
     public function args(): array
@@ -30,14 +32,20 @@ class Hello extends Query
         // return [
         //     "id" => 1
         // ];
-        return [
-            [
-                "id" => 1
-            ],
-            [
-                "id" => 2
-            ]
-        ];
+        // return [
+        //     // [
+        //     //     "id" => 1
+        //     // ],
+        //     // [
+        //     //     "id" => 2
+        //     // ]
+        // ];
+        $date = (new DateTime())->modify('-3 hour')->format('Y-m-d H:i:s');
+        Absence::where('endDate','<', $date)
+                ->update([
+                    'active' => false
+                ]);
+        return $date;
     }
 
 }

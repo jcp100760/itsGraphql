@@ -83,6 +83,8 @@ return [
                 App\GraphQL\Queries\GroupsQuery::class,
                 App\GraphQL\Queries\MgsQuery::class,
                 App\GraphQL\Queries\AbsencesQuery::class,
+                App\GraphQL\Queries\GmpsQuery::class,
+                App\GraphQL\Queries\Hello::class,
             ],
             'mutation' => [
                 // Proffessor

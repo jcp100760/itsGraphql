@@ -18,20 +18,22 @@ class HelloType extends GraphQLType
 
     public function fields(): array
     {
-        $model = new Proffessor();
-        $field = 'proffessorId';
-        $data = ['model' => $model, 'field'=>$field];
+        // $model = new Proffessor();
+        // $field = 'proffessorId';
+        // $data = ['model' => $model, 'field'=>$field];
 
         return [
-            'id' => [
-                'type' => Type::nonNull(Type::int())
+            // 'id' => [
+            //     'type' => Type::nonNull(Type::int())
+            // ],
+            // 
+            'date' => [
+                'type' => Type::nonNull(Type::string())
             ],
-            'name' => HelloField::class,
-            'prueba' => new BaseField($data)
         ];
     }
 
-    public function getModel(){
-        return new Proffessor();
-    }
+    // public function getModel(){
+    //     return new Proffessor();
+    // }
 }

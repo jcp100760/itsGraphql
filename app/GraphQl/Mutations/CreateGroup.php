@@ -6,7 +6,6 @@ namespace App\GraphQL\Mutations;
 
 use App\Models\Group;
 use Closure;
-use App\Models\Matter;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Mutation;
@@ -26,18 +25,26 @@ class CreateGroup extends Mutation
     public function args(): array
     {
         return [
-            'mgId' => [
-                'name' => 'mgId', 
-                'type' => Type::nonNull(Type::int()),
+            'grade' => [
+                'name' => 'grade', 
+                'type' => Type::int(),
             ],
-            'proffessorId' => [
-                'name' => 'proffessorId', 
-                'type' => Type::nonNull(Type::int()),
+            'name' => [
+                'name' => 'name',
+                'type' => Type::string(),
+            ],
+            'description' => [
+                'name' => 'description',
+                'type' => Type::string(),
+            ],
+            'turnId' => [
+                'name' => 'turnId',
+                'type' => Type::int(),
             ],
             'active' => [
-                'name' => 'active', 
-                'type' => Type::nonNull(Type::boolean()),
-            ],
+                'name' => 'active',
+                'type' => Type::boolean(),
+            ],           
 
         ];
     }
