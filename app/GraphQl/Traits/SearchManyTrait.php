@@ -34,7 +34,7 @@ trait SearchManyTrait {
         $data = $data->where($key, '<=', $value);
         continue;
       }
-      $data = $data->where($key, '=', $value);
+       $data = $data->where($key, '=', $value);
     }
     if (!is_array($data)) {
       $formatData = [];
