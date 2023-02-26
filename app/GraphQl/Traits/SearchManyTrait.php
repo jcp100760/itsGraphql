@@ -8,40 +8,11 @@ use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Query;
 use Illuminate\Database\Eloquent\Collection;
-//use Carbon\Carbon;
-//use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use DateTime;
   
 trait SearchManyTrait {
-  
-
-
-    // function searchMany(Collection $data, array $args)
-    //   {
-    //     foreach ($args as $key => $value) {
-    //       if ($key === 'startDate') {
-    //         $data = $data->where($key, '>=', $value);
-    //         continue;
-    //       }
-    //       if ($key === 'endDate') {
-    //         $data = $data->where($key, '<=', $value);
-    //         continue;
-    //       }
-    //       $data = $data->where($key, '=', $value);
-    //     }
-    //     if (count($data) == 1) {
-    //       $formatData = [];
-    //       foreach ($data as $key => $value) {
-    //         array_push($formatData, $data[$key]);
-    //       }
-    //       return $formatData;
-    //     }
-    //     return $data;
-    //   } 
-
-   // <?php
 
 
 /**

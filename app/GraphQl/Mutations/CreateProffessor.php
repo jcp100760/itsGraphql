@@ -7,7 +7,6 @@ use Rebing\GraphQL\Support\Facades\GraphQL;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Mutation;
-use Illuminate\Validation\Rule;
 
 class CreateProffessor extends Mutation
 {
@@ -43,22 +42,7 @@ class CreateProffessor extends Mutation
         ];
     }
 
-    // public function rules(array $args = [])
-    // {
-    //     return [
-    //         'name' => [
-                
-    //         ],
-    //         'email' => [
-    //             'required', 'email', 'unique:users,email',
-    //         ],
-    //         'password' => [
-    //             'required', 'string', 'min:5'
-    //         ],
-    //     ];
-    // }
-
-    public function resolve($root, array $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
+    public function resolve($root, array $args)
     {
         Proffessor::create($args);
         return "Proffessor creado exitosamente";

@@ -10,7 +10,7 @@ class Absence extends Model
   use HasFactory;
   protected $table = 'absence';
   protected $fillable = [
-    'gmpId', 'turnId', 'startDate', 'endDate','active'
+    'gmpId', 'turnId', 'startDate', 'endDate','reason', 'active'
   ];
   public $timestamps = false;
 }

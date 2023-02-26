@@ -15,7 +15,7 @@ class MgsQuery extends Query
 {
     use SearchManyTrait;
     protected $attributes = [
-        'name' => 'mgs',
+        'name' => 'getMgs',
     ];
 
     public function type(): Type
@@ -36,10 +36,6 @@ class MgsQuery extends Query
     public function resolve($root, array $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
     {
         $data = Mg::all();
-        // if (isset($args['id'])) {
-        //     return Mg::where('id' , $args['id'])->get();
-        // }
-        // return Mg::all();
         $data = $this->searchMany($data, $args);
         return $data;
     }

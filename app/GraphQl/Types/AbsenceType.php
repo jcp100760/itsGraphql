@@ -7,8 +7,6 @@ use App\Models\Absence;
 use App\Models\Turn;
 use App\Models\Gmp;
 use GraphQL\Type\Definition\Type;
-// use App\GraphQL\Fields\GmpField;
-// use App\GraphQL\Fields\TurnField;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Type as GraphQLType;
 
@@ -47,11 +45,13 @@ class AbsenceType extends GraphQLType
             'endDate' => [
                 'type' => Type::nonNull(Type::string()),
             ],
+            'reason' => [
+                'type' => Type::nonNull(Type::string()),
+            ],
             'active' => [
                 'type' => Type::nonNull(Type::int()),
             ],
-            //'gmp' => GmpField::class,
-            //'turn' => TurnField::class,   
+
             'turn' => new BaseField($typeTurn, $modelTurn, $fieldTurn ),    
             'gmp' => new BaseField($typeGmp, $modelGmp, $fieldGmp )     
 

@@ -1,13 +1,8 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\GraphQL\Types;
 
 use App\Models\Matter;
-// use App\GraphQL\Fields\MatterField;
-// use App\GraphQL\Fields\GroupField;
-// use App\GraphQL\Fields\ProffessorField;
 use App\GraphQL\Fields\BaseField;
 use App\Models\Proffessor;
 use GraphQL\Type\Definition\Type;
@@ -41,8 +36,6 @@ class SpecialtyType extends GraphQLType
             'proffessorId' => [
                 'type' => Type::nonNull(Type::int()),
             ],
-            // 'matter' => MatterField::class,
-            // 'proffessor' => ProffessorField::class,
 
             'proffessor' => new BaseField($typeProffessor, $modelProffessor, $fieldProffessor),
             'matter' => new BaseField($typeMatter, $modelMatter, $fieldMatter )         

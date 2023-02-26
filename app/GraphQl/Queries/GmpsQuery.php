@@ -38,10 +38,6 @@ class GmpsQuery extends Query
                 'name' => 'proffessorId', 
                 'type' => Type::int(),
             ],
-            // 'matterId' => [
-            //     'name' => 'matterId', 
-            //     'type' => Type::int(),
-            // ],
            
         ];
     }
@@ -49,18 +45,6 @@ class GmpsQuery extends Query
     public function resolve($root, array $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
     {
         $data = Gmp::all();
-        // if (isset($args['id'])) {
-        //     return Gmp::where('id' , $args['id'])->get();
-        // }
-
-        // if (isset($args['proffessorId'])) {
-        //     return Gmp::where('id' , $args['proffessorId'])->get();
-        // }
-
-        // if (isset($args['matterId'])) {
-        //     return Gmp::where('id' , $args['matterId'])->get();
-        // }
-        //  return Gmp::all();
         $data = $this->searchMany($data, $args);
         return $data;
     }

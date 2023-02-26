@@ -4,7 +4,6 @@ namespace App\GraphQL\Types;
 
 use App\Models\Group;
 use GraphQL\Type\Definition\Type;
-use App\GraphQL\Fields\TurnField;
 use App\GraphQL\Fields\BaseField;
 use App\Models\Turn;
 use Rebing\GraphQL\Support\Facades\GraphQL;
@@ -41,7 +40,7 @@ class GroupType extends GraphQLType
             'turnId' => [
                 'type' => Type::nonNull(Type::int()),
             ],
-            // 'turn' => TurnField::class,
+
             'turn' => new BaseField($typeTurn, $modelTurn, $fieldTurn ),    
             
         ];

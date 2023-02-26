@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\GraphQL\Queries;
 
 use Closure;
@@ -46,10 +44,6 @@ class SpecialtiesQuery extends Query
     public function resolve($root, array $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
     {
         $data = Specialty::all();
-        // if (isset($args['id'])) {
-        //     return Specialty::where('id' , $args['id'])->get();
-        // }
-        // return Specialty::all();
         $data = $this->searchMany($data, $args);
 
         return $data;

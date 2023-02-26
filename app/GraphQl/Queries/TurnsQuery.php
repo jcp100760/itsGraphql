@@ -6,7 +6,6 @@ namespace App\GraphQL\Queries;
 
 use App\Models\Turn;
 use Closure;
-//use App\Models\Proffessor;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
@@ -43,15 +42,6 @@ class TurnsQuery extends Query
     public function resolve($root, array $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
     {
         $data = Turn::all();
-        // if (isset($args['id'])) {
-        //     return Turn::where('id' , $args['id'])->get();
-        // }
-
-        // if (isset($args['name'])) {
-        //     return Turn::where('name', 'like', '%'. $args['name'] .'%')->get();
-        // }
-
-        // return Turn::all();
         $data = $this->searchMany($data, $args);
         return $data;
     }

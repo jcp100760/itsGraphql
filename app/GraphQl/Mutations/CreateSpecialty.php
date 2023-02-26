@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\GraphQL\Mutations;
 
 use Closure;
@@ -19,7 +17,7 @@ class CreateSpecialty extends Mutation
 
     public function type(): Type
     {
-        return Type::listOf(Type::string());
+        return Type::nonNull(Type::string());
     }
 
     public function args(): array

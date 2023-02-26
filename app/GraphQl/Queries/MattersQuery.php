@@ -14,7 +14,7 @@ class MattersQuery extends Query
     use SearchManyTrait;
 
     protected $attributes = [
-        'name' => 'matters',
+        'name' => 'getMatters',
     ];
 
     public function type(): Type
@@ -43,21 +43,8 @@ class MattersQuery extends Query
     public function resolve($root, array $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
     {
         $data = Matter::all();
-
-        // if (isset($args['id'])) {
-        //     return Matter::where('id' , $args['id'])->get();
-        // }
-
-        // if (isset($args['name'])) {
-        //     return Matter::where('name', 'like', '%'. $args['name'] .'%')->get();
-        // }
-
-        // if (isset($args['description'])) {
-        //     return Matter::where('description', 'like', '%'. $args['description'] .'%')->get();
-        // }
         $data = $this->searchMany($data, $args);
 
-        return $data; //
-        // return Matter::where('description', 'like', '%BIO%')->get();
+        return $data; 
     }
 }

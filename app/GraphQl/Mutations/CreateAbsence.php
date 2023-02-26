@@ -19,7 +19,7 @@ class CreateAbsence extends Mutation
 
     public function type(): Type
     {
-        return Type::listOf(Type::string());
+        return Type::nonNull(Type::string());
     }
 
     public function args(): array
@@ -39,6 +39,10 @@ class CreateAbsence extends Mutation
             ],
             'endDate' => [
                 'name' => 'endDate', 
+                'type' => Type::nonNull(Type::string()),
+            ],
+            'reason' => [
+                'name' => 'reason', 
                 'type' => Type::nonNull(Type::string()),
             ],
             'active' => [

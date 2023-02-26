@@ -6,7 +6,6 @@ use App\Models\Proffessor;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
-//use App\GraphQL\Middleware\Authenticate;
 use Rebing\GraphQL\Support\Query;
 use App\Graphql\Traits\SearchManyTrait;
 
@@ -16,7 +15,7 @@ class ProffessorsQuery extends Query
     use SearchManyTrait;
 
      protected $attributes = [
-         'name' => 'proffessors',
+         'name' => 'getProffessors',
      ];
 
     public function type(): Type
@@ -49,20 +48,8 @@ class ProffessorsQuery extends Query
     public function resolve($root, array $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
     {
         $data = Proffessor::all();
-        // if (isset($args['id'])) {
-        //     return Proffessor::where('id' , $args['id'])->get();
-        // }
-
-        // if (isset($args['lastname'])) {
-        //     return Proffessor::where('lastname', 'like', '%'. $args['lastname'] .'%')->get();
-        // }
-
-        // if (isset($args['ci'])) {
-        //     return Proffessor::where('ci', $args['ci'])->get();
-        // }
-        //$this->Hello($root, $data);
         $data = $this->searchMany($data, $args);
 
-        return $data; //Proffessor::all();
+        return $data; 
     }
 }

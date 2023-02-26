@@ -16,7 +16,7 @@ class GroupsQuery extends Query
 {
     use SearchManyTrait;
     protected $attributes = [
-        'name' => 'groups',
+        'name' => 'getGroups',
     ];
 
     public function type(): Type
@@ -53,24 +53,6 @@ class GroupsQuery extends Query
     public function resolve($root, array $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
     {
         $data = Group::all();
-
-        // if (isset($args['id'])) {
-        //     return Group::where('id' , $args['id'])->get();
-        // }
-
-        // if (isset($args['name'])) {
-        //     return Group::where('name', 'like', '%'. $args['name'] .'%')->get();
-        // }
-
-        // if (isset($args['grade'])) {
-        //     return Group::where('grade', $args['grade'])->get();
-        // }
-
-        // if (isset($args['turnId'])) {
-        //     return Group::where('turnId', $args['turnId'])->get();
-        // }
-
-        // return Group::all();
         $data = $this->searchMany($data, $args);
 
         return $data;

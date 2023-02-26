@@ -3,11 +3,9 @@
 namespace App\GraphQL\Types;
 
 use App\Models\Gmp;
-use GraphQL\Type\Definition\Type;
-// use App\GraphQL\Fields\MgField;
-// use App\GraphQL\Fields\ProffessorField;
 use App\Models\Mg;
 use App\Models\Proffessor;
+use GraphQL\Type\Definition\Type;
 use App\GraphQL\Fields\BaseField;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Type as GraphQLType;
@@ -42,8 +40,7 @@ class GmpType extends GraphQLType
             'active' => [
                 'type' => Type::nonNull(Type::boolean()),
             ],
-            // 'mg' => MgField::class,
-            // 'proffessor' => ProffessorField::class
+
             'mg' => new BaseField($typeMg, $modelMg, $fieldMg ),    
             'proffessor' => new BaseField($typeProffessor, $modelProffessor, $fieldProffessor )     
 

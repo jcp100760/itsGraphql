@@ -1,7 +1,6 @@
 <?php
 namespace App\GraphQL\Types;
 
-use App\GraphQL\Fields\BaseField;
 use App\Models\Matter;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Facades\GraphQL;

@@ -6,11 +6,10 @@ namespace App\GraphQL\Mutations;
 
 use Closure;
 use App\Models\Matter;
+use Rebing\GraphQL\Support\Facades\GraphQL;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Mutation;
-use Rebing\GraphQL\Support\SelectFields;
-
 class CreateMatter extends Mutation
 {
     protected $attributes = [
@@ -19,7 +18,7 @@ class CreateMatter extends Mutation
 
     public function type(): Type
     {
-        return Type::listOf(Type::string());
+        return Type::nonNull(Type::string());
     }
 
     public function args(): array
@@ -37,7 +36,7 @@ class CreateMatter extends Mutation
         ];
     }
 
-    public function resolve($root, array $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
+    public function resolve($root, array $args)
     {
         Matter::create($args);
         return "Matter creada exitosamente";

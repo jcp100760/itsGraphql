@@ -45,6 +45,10 @@ class UpdateAbsence extends Mutation
                 'name' => 'endDate', 
                 'type' => Type::string(),
             ],
+            'reason' => [
+                'name' => 'reason', 
+                'type' => Type::string(),
+            ],
             'active' => [
                 'name' => 'active',
                 'type' => Type::boolean(),
